@@ -34,12 +34,13 @@ public class TilistyModel extends AbstractModel {
 	
 	private TilistyModel() 
 	{
+		
 		this.views = new ArrayList<TiViewModel>();
 	}
 	
 	public void registerDevice(Device device) 
 	{
-		this.device = device;
+		this.setDevice(device);
 		this.change(REGISTER_DEVICE);
 	}
 	
@@ -66,5 +67,13 @@ public class TilistyModel extends AbstractModel {
 				this.views.remove(i);
 			}
 		}
+	}
+
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
 	}
 }

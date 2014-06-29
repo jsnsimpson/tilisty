@@ -54,6 +54,10 @@ public class DataModelDelegate {
 					TilistyModel.getInstance().addView(view);
 				}
 				break;
+				case UNKNOWN:
+					break;
+				default:
+					break;
 			}
 			
 			if(message.has("msgId")) {

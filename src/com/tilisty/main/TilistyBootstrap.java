@@ -14,7 +14,6 @@ import com.tilisty.views.TilistyView;
 public class TilistyBootstrap 
 {
 	
-	private TilistyView application;
 	private TiViewWatcher watcher;
 	
 	public TilistyBootstrap() 
@@ -25,11 +24,18 @@ public class TilistyBootstrap
 	public void start() 
 	{
 		DataServices.getInstance().startServices();
-		this.application = new TilistyView();
 		String[] s = {};
-		watcher = new TiViewWatcher();
+		this.setWatcher(new TiViewWatcher());
 		
 		Application.launch(TilistyView.class, s);
+	}
+
+	public TiViewWatcher getWatcher() {
+		return watcher;
+	}
+
+	public void setWatcher(TiViewWatcher watcher) {
+		this.watcher = watcher;
 	}
 	
 }

@@ -51,7 +51,7 @@ public class TilistyView extends Application implements IObserver {
 	 * @see PropertyPanel
 	 */
 	public void start(Stage stage) {
-		this.stage = stage;
+		this.setStage(stage);
 		Scene scene = new Scene(mainArea, APP_WIDTH, APP_HEIGHT);
 		stage.setTitle("Tilisty");
 
@@ -135,11 +135,20 @@ public class TilistyView extends Application implements IObserver {
 		Platform.runLater(new ViewUpdater(this.mainArea.getChildren(), shape, ViewTasks.TASK_REMOVE));
 	}
 	
+	@SuppressWarnings("unused")
 	private void removeAll() {
 		int size = this.mainArea.getChildren().size();
 		for(int i = 0; i < size; i++) {
 			this.removeView(this.mainArea.getChildren().get(0));
 		}
+	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
 	}
 	
 }

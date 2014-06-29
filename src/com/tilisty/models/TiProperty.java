@@ -3,7 +3,6 @@ package com.tilisty.models;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,10 +47,11 @@ public class TiProperty extends AbstractModel implements IObserver {
 	 * @param JSONObject props
 	 * @return ArrayList props
 	 */
-	private ArrayList processProperties(JSONObject props) 
+	private ArrayList<TiProperty> processProperties(JSONObject props) 
 	{
 		ArrayList<TiProperty> nestedProps = new ArrayList<TiProperty>();
 		try {
+			@SuppressWarnings("unchecked")
 			Iterator<String> keys = props.keys();
 			while(keys.hasNext()) {
 				String key = keys.next();

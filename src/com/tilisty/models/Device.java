@@ -13,24 +13,33 @@ import org.json.JSONObject;
 public class Device {
 
 	private String deviceId;
+	
 	public Device(JSONObject info) {
 		// TODO Auto-generated constructor stub
 		this.initializeFromJSON(info);
 	}
 	
 	public Device() {
-		this.deviceId = "";
+		this.setDeviceId("");
 	}
 	
 	public void initializeFromJSON(JSONObject info) {
 	
 		try {
 			if(info.has("deviceId")) {
-				this.deviceId = info.getString("deviceId");
+				this.setDeviceId(info.getString("deviceId"));
 			}
 		} catch(JSONException e) {
 			
 		}
+	}
+
+	public String getDeviceId() {
+		return deviceId;
+	}
+
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
 	}
 
 }

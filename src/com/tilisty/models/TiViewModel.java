@@ -39,7 +39,9 @@ public class TiViewModel extends AbstractModel implements IObserver {
 	 */
 	public void fromJSON(JSONObject info) {
 		try {
+			@SuppressWarnings("unchecked")
 			Iterator<String> keys = info.keys();
+			
 			while(keys.hasNext()) {
 				String key = keys.next();
 				if(key.equals("children") && info.get(key) instanceof JSONArray) {

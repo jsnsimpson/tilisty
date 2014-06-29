@@ -27,3 +27,14 @@ bin/com/tilisty/views/TilistyView.class
 bin/com/tilisty/views/ViewItem.class
 bin/com/tilisty/views/ViewTasks.class
 bin/com/tilisty/views/ViewUpdater.class
+*.html
+*.class
+libs/apache-mina-2.0.7/src
+libs/apache-mina-2.0.7 2/docs
+libs/apache-mina-2.0.7 2/LICENSE.jzlib.txt
+libs/apache-mina-2.0.7 2/LICENSE.ognl.txt
+libs/apache-mina-2.0.7 2/LICENSE.slf4j.txt
+libs/apache-mina-2.0.7 2/LICENSE.springframework.txt
+libs/apache-mina-2.0.7 2/LICENSE.txt
+libs/apache-mina-2.0.7 2/NOTICE.txt
+libs/apache-mina-2.0.7/docs

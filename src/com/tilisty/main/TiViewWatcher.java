@@ -1,7 +1,6 @@
 package com.tilisty.main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.tilisty.data.DataServices;
 import com.tilisty.models.IObserver;
