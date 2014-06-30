@@ -29,14 +29,7 @@ Tilisty.start({
 ```
 
 Then from anywhere else in your application when you have a view you wish to style:
-
-```
-
-
-```
-
-Quick Example: 
-
+ (example, replace 'tiView' with your view and replace id with your variable name)
 ```
 var tiView = Ti.UI.createView({
   id : 'tiView', //this id shows up in tilisty 
