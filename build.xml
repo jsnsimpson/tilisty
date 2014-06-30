@@ -1,64 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="compile" name="Create Runnable Jar for Project Tilisty " xmlns:fx="javafx:com.sun.javafx.tools.ant">
-    
-     <target name="fxbuild">
+     
+     <target name="precompile">
+	    <mkdir dir="tmpcompile"/>
+	    <copy todir="tmpcompile">
+	    	<fileset dir="bin"/>
+   	    </copy>
+            <unzip src="libs/mina/lib/commons-lang-2.6.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/commons-logging-1.0.3.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/javassist-3.7.ga.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/javassist-3.11.0.GA.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/jcl-over-slf4j-1.6.6.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/jzlib-1.1.1.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/ognl-3.0.5.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/slf4j-api-1.6.6.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/spring-2.5.6.SEC03.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/tomcat-apr-5.5.23.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/lib/xbean-spring-3.11.1.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-core-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-example-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-filter-compression-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-integration-beans-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-integration-jmx-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-integration-ognl-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-integration-xbean-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-statemachine-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/mina/dist/mina-transport-apr-2.0.7.jar" dest="tmpcompile"/>
+            <unzip src="libs/json-20090211.jar" dest="tmpcompile"/>     	
+     </target>
+     <target name="fxbuild" depends="compile, precompile">
      	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
      	        uri="javafx:com.sun.javafx.tools.ant"
-     	        classpath="/Library/Java/JavaVirtualMachines/jdk1.7.0_21.jdk/Contents/Home/lib/ant-javafx.jar"/>
+     	        classpath="/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/lib/ant-javafx.jar"/>
      	
-		<fx:jar destfile="tilistyfx.jar">
-		    <!-- Details about application -->
-		    <fx:application name="Sample JavaFX application"
-		            mainClass="com.tilisty.views.TilistyView"/>
+	<fx:jar destfile="tilisty.jar" verbose="true">
+	    <!-- Details about application -->
+	    <fx:application name="Tilisty"
+	           mainClass="com.tilisty.views.TilistyView"/>
 		 
-		    <!-- Define what auxilary resources are needed -->
-		    <fx:resources>
-		        <fx:fileset dir="build" includes="libs/*.jar"/>
-		    </fx:resources>
-		            
-		    <!-- What to include into result jar file?
-		         Everything in the build tree -->
-		    <fileset dir="bin"/>
-		 
-		    <!-- Customize jar manifest (optional) -->
-		    <manifest>
-		        <attribute name="Implementation-Vendor" value="Tilisty"/>
-		        <attribute name="Implementation-Version" value="1.0"/>
-		    </manifest>
-		</fx:jar>
-	</target>
-    <target name="compile" depends="fxbuild">
-        <jar destfile="tilisty.jar">
-            <manifest>
-                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-                <attribute name="Rsrc-Main-Class" value="Tilisty"/>
-                <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./ commons-lang-2.6.jar commons-logging-1.0.3.jar javassist-3.7.ga.jar javassist-3.11.0.GA.jar jcl-over-slf4j-1.6.6.jar jzlib-1.1.1.jar ognl-3.0.5.jar slf4j-api-1.6.6.jar spring-2.5.6.SEC03.jar tomcat-apr-5.5.23.jar xbean-spring-3.11.1.jar mina-core-2.0.7.jar mina-example-2.0.7.jar mina-filter-compression-2.0.7.jar mina-integration-beans-2.0.7.jar mina-integration-jmx-2.0.7.jar mina-integration-ognl-2.0.7.jar mina-integration-xbean-2.0.7.jar mina-statemachine-2.0.7.jar mina-transport-apr-2.0.7.jar json-20090211.jar"/>
-            </manifest>
-            <zipfileset src="jar-in-jar-loader.zip"/>
-            <fileset dir="bin"/>
-            <zipfileset dir="." includes="tilistyfx.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="commons-lang-2.6.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="commons-logging-1.0.3.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="javassist-3.7.ga.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="javassist-3.11.0.GA.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="jcl-over-slf4j-1.6.6.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="jzlib-1.1.1.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="ognl-3.0.5.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="slf4j-api-1.6.6.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="spring-2.5.6.SEC03.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="tomcat-apr-5.5.23.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="xbean-spring-3.11.1.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-core-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-example-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-filter-compression-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-integration-beans-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-integration-jmx-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-integration-ognl-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-integration-xbean-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-statemachine-2.0.7.jar"/>
-            <zipfileset dir="libs/apache-mina-2.0.7 2/dist" includes="mina-transport-apr-2.0.7.jar"/>
-            <zipfileset dir="libs" includes="json-20090211.jar"/>
-        </jar>
+	    <!-- Define what auxilary resources are needed -->
+	    <fx:resources>
+	    </fx:resources>
+	            
+	    <!-- What to include into result jar file?
+	         Everything in the build tree -->
+	    <fileset dir="tmpcompile"/>
+	 
+	    <!-- Customize jar manifest (optional) -->
+	    <manifest>
+	    </manifest>
+	</fx:jar>
+    </target>
+
+    <target name="compile">
+	<path id="master-classpath">
+  		<fileset dir="libs/">
+    			<include name="*.jar"/>
+  		</fileset>
+		<fileset dir="libs/mina/lib/">
+                        <include name="*.jar"/>
+                </fileset>
+		<fileset dir="libs/mina/dist/">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<path id="src">
+		<fileset dir="src/">
+			<include name="*.java"/>
+		</fileset>
+	</path>
+	<javac srcdir="src/" destdir="bin" includeAntRuntime="false">
+		<classpath refid="master-classpath"/>
+	</javac>
+	<echo>Compiled Tilisty</echo>
+    </target> 
+    <target name="cleanup">
+    	<delete dir="tmpcompile"/>
+    </target>
+    <target name="build" depends="compile, precompile, fxbuild, cleanup">
     </target>
 </project>

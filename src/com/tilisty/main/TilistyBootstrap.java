@@ -27,7 +27,7 @@ public class TilistyBootstrap
 		String[] s = {};
 		this.setWatcher(new TiViewWatcher());
 		
-		Application.launch(TilistyView.class, s);
+//		Application.launch(TilistyView.class, s);
 	}
 
 	public TiViewWatcher getWatcher() {

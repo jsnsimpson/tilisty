@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.tilisty.main.TilistyBootstrap;
 import com.tilisty.data.TilistyTreeView;
 import com.tilisty.models.IObserver;
 import com.tilisty.models.TiViewModel;
@@ -51,6 +52,7 @@ public class TilistyView extends Application implements IObserver {
 	 * @see PropertyPanel
 	 */
 	public void start(Stage stage) {
+		new TilistyBootstrap().start();
 		this.setStage(stage);
 		Scene scene = new Scene(mainArea, APP_WIDTH, APP_HEIGHT);
 		stage.setTitle("Tilisty");
