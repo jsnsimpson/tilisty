@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="compile" name="Create Runnable Jar for Project Tilisty with Jar-in-Jar Loader">
-    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
-    <!--ANT 1.7 is required                                        -->
-    <target name="compile">
+<project default="compile" name="Create Runnable Jar for Project Tilisty " xmlns:fx="javafx:com.sun.javafx.tools.ant">
+    
+     <target name="fxbuild">
+     	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
+     	        uri="javafx:com.sun.javafx.tools.ant"
+     	        classpath="/Library/Java/JavaVirtualMachines/jdk1.7.0_21.jdk/Contents/Home/lib/ant-javafx.jar"/>
+     	
+		<fx:jar destfile="tilistyfx.jar">
+		    <!-- Details about application -->
+		    <fx:application name="Sample JavaFX application"
+		            mainClass="com.tilisty.views.TilistyView"/>
+		 
+		    <!-- Define what auxilary resources are needed -->
+		    <fx:resources>
+		        <fx:fileset dir="build" includes="libs/*.jar"/>
+		    </fx:resources>
+		            
+		    <!-- What to include into result jar file?
+		         Everything in the build tree -->
+		    <fileset dir="bin"/>
+		 
+		    <!-- Customize jar manifest (optional) -->
+		    <manifest>
+		        <attribute name="Implementation-Vendor" value="Tilisty"/>
+		        <attribute name="Implementation-Version" value="1.0"/>
+		    </manifest>
+		</fx:jar>
+	</target>
+    <target name="compile" depends="fxbuild">
         <jar destfile="tilisty.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
@@ -12,6 +37,7 @@
             </manifest>
             <zipfileset src="jar-in-jar-loader.zip"/>
             <fileset dir="bin"/>
+            <zipfileset dir="." includes="tilistyfx.jar"/>
             <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="commons-lang-2.6.jar"/>
             <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="commons-logging-1.0.3.jar"/>
             <zipfileset dir="libs/apache-mina-2.0.7 2/lib" includes="javassist-3.7.ga.jar"/>
