@@ -56,7 +56,6 @@
 			 
 		    <!-- Define what auxilary resources are needed -->
 		    <fx:resources>
-		    	<fx:fileset dir="${libs}" includes="jfxrt.jar"/>
 		    </fx:resources>
 		            
 		    <!-- What to include into result jar file?
