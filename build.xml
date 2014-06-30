@@ -1,82 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="compile" name="Create Runnable Jar for Project Tilisty " xmlns:fx="javafx:com.sun.javafx.tools.ant">
      
+	<property name="mina-lib" value="libs/mina/lib"/>
+	<property name="mina-dist" value="libs/mina/dist"/>
+	<property name="libs" value="libs"/>
+	<property name="tempcompile" value="tmpcompile"/>
+	<property name="src-dir" value="src"/>
+	<property name="appHeight" value="720"/>
+	<property name="appWidth" value="280"/>
+	<property name="dist-dir" value="dist"/>
+	<property name="applicationName" value="Tilisty"/>
+	<property name="applicationTeam" value="TilistyTeam"/>
+	<property name="mainClass" value="com.tilisty.views.TilistyView"/>
+	
+ 	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
+ 	        uri="javafx:com.sun.javafx.tools.ant"
+ 	        classpath="/Library/Java/JavaVirtualMachines/jdk1.7.0_21.jdk/Contents/Home/lib/ant-javafx.jar"/>
+	
      <target name="precompile">
-	    <mkdir dir="tmpcompile"/>
-	    <copy todir="tmpcompile">
+     	<echo>Copying all class files to temporary directory</echo>
+	    <mkdir dir="${tempcompile}"/>
+	    <copy todir="${tempcompile}">
 	    	<fileset dir="bin"/>
    	    </copy>
-            <unzip src="libs/mina/lib/commons-lang-2.6.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/commons-logging-1.0.3.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/javassist-3.7.ga.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/javassist-3.11.0.GA.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/jcl-over-slf4j-1.6.6.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/jzlib-1.1.1.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/ognl-3.0.5.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/slf4j-api-1.6.6.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/spring-2.5.6.SEC03.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/tomcat-apr-5.5.23.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/lib/xbean-spring-3.11.1.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-core-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-example-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-filter-compression-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-integration-beans-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-integration-jmx-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-integration-ognl-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-integration-xbean-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-statemachine-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/mina/dist/mina-transport-apr-2.0.7.jar" dest="tmpcompile"/>
-            <unzip src="libs/json-20090211.jar" dest="tmpcompile"/>     	
+     	<echo>Unarchive all jars to include in compilation</echo>
+        <unzip src="${mina-lib}/commons-lang-2.6.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/commons-logging-1.0.3.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/javassist-3.7.ga.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/javassist-3.11.0.GA.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/jcl-over-slf4j-1.6.6.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/jzlib-1.1.1.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/ognl-3.0.5.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/slf4j-api-1.6.6.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/spring-2.5.6.SEC03.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/tomcat-apr-5.5.23.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-lib}/xbean-spring-3.11.1.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-core-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-example-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-filter-compression-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-integration-beans-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-integration-jmx-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-integration-ognl-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-integration-xbean-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-statemachine-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${mina-dist}/mina-transport-apr-2.0.7.jar" dest="${tempcompile}"/>
+        <unzip src="${libs}/json-20090211.jar" dest="${tempcompile}"/>    
+     	<echo>All Jars extracted</echo>
      </target>
      <target name="fxbuild" depends="compile, precompile">
-     	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
-     	        uri="javafx:com.sun.javafx.tools.ant"
-     	        classpath="/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/lib/ant-javafx.jar"/>
      	
-	<fx:jar destfile="tilisty.jar" verbose="true">
-	    <!-- Details about application -->
-	    <fx:application name="Tilisty"
-	           mainClass="com.tilisty.views.TilistyView"/>
+		<fx:jar destfile="${dist-dir}/tilisty.jar" verbose="true">
+		    <!-- Details about application -->
+		    <fx:application name="${applicationName}"
+		           mainClass="${mainClass}"/>
+			 
+		    <!-- Define what auxilary resources are needed -->
+		    <fx:resources>
+		    	<fx:fileset dir="${libs}" includes="jfxrt.jar"/>
+		    </fx:resources>
+		            
+		    <!-- What to include into result jar file?
+		         Everything in the build tree -->
+		    <fileset dir="${tempcompile}"/>
 		 
-	    <!-- Define what auxilary resources are needed -->
-	    <fx:resources>
-	    </fx:resources>
-	            
-	    <!-- What to include into result jar file?
-	         Everything in the build tree -->
-	    <fileset dir="tmpcompile"/>
-	 
-	    <!-- Customize jar manifest (optional) -->
-	    <manifest>
-	    </manifest>
-	</fx:jar>
+		    <!-- Customize jar manifest (optional) -->
+		    <manifest>
+		    	
+		    </manifest>
+		</fx:jar>
+     	<echo>Finished executing JavaFX JAR compilation </echo>
     </target>
 
     <target name="compile">
-	<path id="master-classpath">
-  		<fileset dir="libs/">
-    			<include name="*.jar"/>
-  		</fileset>
-		<fileset dir="libs/mina/lib/">
-                        <include name="*.jar"/>
-                </fileset>
-		<fileset dir="libs/mina/dist/">
-			<include name="*.jar"/>
-		</fileset>
-	</path>
-	<path id="src">
-		<fileset dir="src/">
-			<include name="*.java"/>
-		</fileset>
-	</path>
-	<javac srcdir="src/" destdir="bin" includeAntRuntime="false">
-		<classpath refid="master-classpath"/>
-	</javac>
-	<echo>Compiled Tilisty</echo>
+		<path id="master-classpath">
+	  		<fileset dir="libs/">
+	    			<include name="*.jar"/>
+	  		</fileset>
+			<fileset dir="${mina-lib}/">
+	                        <include name="*.jar"/>
+	                </fileset>
+			<fileset dir="${mina-dist}/">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+		<path id="src">
+			<fileset dir="${src-dir}">
+				<include name="*.java"/>
+			</fileset>
+		</path>
+		<javac srcdir="${src-dir}" destdir="bin" includeAntRuntime="false">
+			<classpath refid="master-classpath"/>
+		</javac>
+		<echo>Compiled Tilisty</echo>
     </target> 
     <target name="cleanup">
-    	<delete dir="tmpcompile"/>
+    	<delete dir="${tempcompile}"/>
     </target>
     <target name="build" depends="compile, precompile, fxbuild, cleanup">
+    	<echo>Finished Building</echo>
     </target>
+	
+<!--	<target name="deploy" depends="build">
+		<fx:deploy width="${appHeight}" height="${appWidth}"
+		           nativeBundles="all"
+		           outdir="${dist-dir}" outfile="${applicationName}">
+		    <fx:application name="${applicationName}" mainClass="${mainClass}"/>
+		    <fx:resources>
+		        <fx:fileset dir="${dist-dir}" includes="*.jar"/>
+		    </fx:resources>
+		    <fx:info title="${applicationName}" vendor="${applicationTeam}"/>
+		</fx:deploy>
+	</target> -->
 </project>
