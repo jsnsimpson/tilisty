@@ -1,16 +1,17 @@
 tilisty
 =======
 
-Requirements: Java VM v7.0 or above. The application will prompt an update if you have Java 6 or below.
-
+Requirements: Java VM v7.0 or above. The application will prompt an update if you have Java 6 or below. 
 
 TItanium LIve STYle - edit your titanium styles live on screen to save the time recompiling to see visible changes.
 
 Usage Instructions:  
 - Pull this repository.
-- Drop js/Tilisty.js in to your titanium application
-- Launch the Application either by double clicking on tilisty.jar or
-- running 'java -jar tilisty.jar' from command line
+- Drop js/Tilisty.js in to your titanium application and implement code as in the examples below.
+- On Mac you can launch the java Application with the Jar Launcher app
+- running ```java -jar tilisty.jar``` from command line
+- Ensure you have java version 1.7 (VM 7.0+) installed, type ```java -version``` in terminal
+- You can download JRE 7.0 from here: [Java SE 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 Using Tilisty in your Titanium App: 
 
