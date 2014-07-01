@@ -1,6 +1,9 @@
 tilisty
 =======
 
+Requirements: Java VM v7.0 or above. The application will prompt an update if you have Java 6 or below.
+
+
 TItanium LIve STYle - edit your titanium styles live on screen to save the time recompiling to see visible changes.
 
 Usage Instructions:  
@@ -26,13 +29,21 @@ Tilisty.start({
 ```
 
 Then from anywhere else in your application when you have a view you wish to style:
-
+ (example, replace 'tiView' with your view and replace id with your variable name)
 ```
+var tiView = Ti.UI.createView({
+  id : 'tiView', //this id shows up in tilisty 
+  width : 120, // All following properties will be editable in the Tilisty UI
+  height : 120, 
+  left : 10,
+  top : 10,
+  backgroundColor : 'white'
+});
+
 var Tilisty = require('Tilisty');
 
-Tilisty.registerView(<<ANY TIVIEW TYPE>>); 
+Tilisty.registerView(tiView); 
 
 ```
-
 
 There is an example app in this repository under the demo directory.
