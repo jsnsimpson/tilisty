@@ -11,7 +11,7 @@ Usage Instructions:
 - On Mac you can launch the java Application with the Jar Launcher app
 - running ```java -jar tilisty.jar``` from command line
 - Ensure you have java version 1.7 (VM 7.0+) installed, type ```java -version``` in terminal
-- You can download JRE 7.0 from here: [Java SE 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- You can download the latest JDK (v 7+) from here: [Java SE 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 Using Tilisty in your Titanium App: 
 
