@@ -48,6 +48,7 @@ public class TilistyTreeView extends TreeView<String> implements IObserver {
 	public void setupTree() {
 		this.setPrefWidth(TilistyView.APP_WIDTH*0.32);
 		this.setPrefHeight(TilistyView.APP_HEIGHT-3);
+		this.setHeight(TilistyView.APP_HEIGHT-3);
 		this.setMinHeight(TilistyView.APP_HEIGHT-3);
 		this.setRoot(this.treeRoot);
 	}

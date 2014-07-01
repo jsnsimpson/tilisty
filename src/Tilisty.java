@@ -13,6 +13,5 @@ public class Tilisty {
 	
 	public static void main(String[] args) {
 		Application.launch(TilistyView.class, args);	
-	//new TilistyBootstrap().start();
 	}
 }

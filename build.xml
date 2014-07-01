@@ -15,7 +15,7 @@
 	
  	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
  	        uri="javafx:com.sun.javafx.tools.ant"
- 	        classpath="/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/lib/ant-javafx.jar"/>
+ 	        classpath="${libs}/ant-javafx.jar"/>
 	
      <target name="precompile">
      	<echo>Copying all class files to temporary directory</echo>
@@ -56,7 +56,7 @@
 		    <!-- Define what auxilary resources are needed -->
 		    <fx:resources>
 		    </fx:resources>
-		    <fx:platform javafx="2.0+" j2se="7.0"/>    
+		    <fx:platform javafx="2.0+" j2se="7u6"/>    
 		    <!-- What to include into result jar file?
 		         Everything in the build tree -->
 		    <fileset dir="${tempcompile}"/>

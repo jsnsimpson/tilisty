@@ -1,9 +1,6 @@
 package com.tilisty.main;
 
-import javafx.application.Application;
-
 import com.tilisty.data.DataServices;
-import com.tilisty.views.TilistyView;
 
 /**
  * Kick starts the Tilisty UI and DataServices
@@ -27,7 +24,6 @@ public class TilistyBootstrap
 		String[] s = {};
 		this.setWatcher(new TiViewWatcher());
 		
-//		Application.launch(TilistyView.class, s);
 	}
 
 	public TiViewWatcher getWatcher() {

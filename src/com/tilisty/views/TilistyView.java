@@ -4,14 +4,17 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import com.tilisty.main.TilistyBootstrap;
 import com.tilisty.data.TilistyTreeView;
@@ -52,7 +55,9 @@ public class TilistyView extends Application implements IObserver {
 	 * @see PropertyPanel
 	 */
 	public void start(Stage stage) {
+		
 		new TilistyBootstrap().start();
+		
 		this.setStage(stage);
 		Scene scene = new Scene(mainArea, APP_WIDTH, APP_HEIGHT);
 		stage.setTitle("Tilisty");
@@ -77,6 +82,7 @@ public class TilistyView extends Application implements IObserver {
 		ScrollPane listHolder = new ScrollPane();
 		listHolder.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		listHolder.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		listHolder.setMaxWidth(APP_WIDTH * 0.33);
 		listHolder.setPrefWidth(APP_WIDTH * 0.33);
 		listHolder.setPrefHeight(APP_HEIGHT);
 		listHolder.setContent(this.viewList);
@@ -86,13 +92,25 @@ public class TilistyView extends Application implements IObserver {
 		propHolder.setHbarPolicy(ScrollBarPolicy.NEVER);
 		propHolder.setPrefWidth(APP_WIDTH * 0.66);
 		propHolder.setContent(this.propView);
+
+		this.mainArea.setHgrow(propHolder, Priority.ALWAYS);
+		this.mainArea.setHgrow(listHolder, Priority.ALWAYS);
 		
 		this.mainArea.getChildren().add(listHolder);
 		this.mainArea.getChildren().add(propHolder);
+		
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("Exiting Tilisty...");
+				System.exit(1);
+			}
+		});
+		
 		stage.setScene(scene);
-		
 		stage.show();
-		
 	}
 	
 	

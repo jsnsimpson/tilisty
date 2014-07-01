@@ -40,7 +40,6 @@ public class PropertyPanel extends GridPane {
 		this.setVgap(10);
 		this.setPadding(new Insets(25, 25, 25, 25));
 		this.setAlignment(Pos.CENTER);
-		this.setPrefWidth(TilistyView.APP_WIDTH * 0.66);
 		
 		//set the default title for all properties panels.
 		Text scenetitle = new Text("PROPERTIES");
