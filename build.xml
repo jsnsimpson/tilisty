@@ -87,7 +87,7 @@
 				<include name="*.java"/>
 			</fileset>
 		</path>
-		<javac srcdir="${src-dir}" destdir="bin" includeAntRuntime="false">
+		<javac srcdir="${src-dir}" destdir="bin" includeAntRuntime="false" target="1.7">
 			<classpath refid="master-classpath"/>
 		</javac>
 		<echo>Compiled Tilisty</echo>
