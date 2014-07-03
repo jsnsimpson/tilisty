@@ -1,9 +1,15 @@
 package com.tilisty.views;
 
+import org.apache.commons.lang.StringUtils;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -54,6 +60,37 @@ public class TiPropertyView {
 			public void changed(ObservableValue<? extends String> arg0, String oldValue, String newValue) {
 				
 				TiPropertyView.this.prop.setValue(newValue);
+			}
+		});
+		
+		field.setOnKeyPressed( new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				TiProperty prop = TiPropertyView.this.prop;
+				
+				if(prop.getPropertyType() == TiProperty.PROPERTY_TYPE_NORMAL) {
+					if(event.getCode() == KeyCode.UP) {
+						try {
+							int newVal = Integer.parseInt(prop.getValue())+1;
+							prop.setValue(String.valueOf(newVal));
+							field.setText(prop.getValue());								
+						} catch(NumberFormatException e) {
+//							System.out.println("Can't use arrows on non-numeric fields");
+						}
+					} else if(event.getCode() == KeyCode.DOWN) {
+						try {
+							int newVal = Integer.parseInt(prop.getValue())-1;
+							prop.setValue(String.valueOf(newVal));
+							field.setText(prop.getValue());							
+						} catch(NumberFormatException e) {
+//							System.out.println("Can't use arrows on non-numeric fields");
+						} 
+					}
+					
+					
+					
+				}
 			}
 		});
 	}

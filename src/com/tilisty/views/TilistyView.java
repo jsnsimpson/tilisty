@@ -12,6 +12,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -93,8 +94,9 @@ public class TilistyView extends Application implements IObserver {
 		propHolder.setPrefWidth(APP_WIDTH * 0.66);
 		propHolder.setContent(this.propView);
 
-		this.mainArea.setHgrow(propHolder, Priority.ALWAYS);
-		this.mainArea.setHgrow(listHolder, Priority.ALWAYS);
+		HBox.setHgrow(propHolder, Priority.ALWAYS);
+		VBox.setVgrow(listHolder, Priority.ALWAYS);
+		VBox.setVgrow(this.viewList, Priority.ALWAYS);
 		
 		this.mainArea.getChildren().add(listHolder);
 		this.mainArea.getChildren().add(propHolder);
