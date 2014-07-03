@@ -1,9 +1,11 @@
 tilisty
 =======
 
-Requirements: Java VM v7.0 or above. The application will prompt an update if you have Java 6 or below. 
+Requirements: Tilisty App is built uses the JavaFX UI Library and requires Java VM v7.0 or above. The application will prompt an update if you have Java 6 or below. Download latest JDK from [here](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
-TItanium LIve STYle - edit your titanium styles live on screen to save the time recompiling to see visible changes.
+TItanium LIve STYle - A new tool to enable you to edit your titanium view properties live on screen to save the time recompiling to see visible changes.
+
+The idea came following frustrations of the styling development cycle -> compile -> launch simulator -> looks wrong - > tweak the properties a bit -> compile -> launch -> still looks wrong -> repeat. This tool enables you to compile your app once and get the properties correct from one compilation. Very much like live styling in firebug or chrome dev tools etc.
 
 Usage Instructions:  
 - Pull this repository.
