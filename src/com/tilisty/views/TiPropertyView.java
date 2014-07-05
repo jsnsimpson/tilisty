@@ -1,5 +1,8 @@
 package com.tilisty.views;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang.StringUtils;
 
 import javafx.beans.value.ChangeListener;
@@ -37,6 +40,8 @@ public class TiPropertyView {
 	private Label propKey;
 	private TextField field;
 	
+	private Pattern ints = Pattern.compile("\\d+");
+	
 	public TiPropertyView(TiProperty prop, TiViewModel view) {
 		this.prop = prop;
 		this.setupPropertyView();
@@ -55,6 +60,8 @@ public class TiPropertyView {
 		}
 		
 		this.field = new TextField(this.prop.getValue());
+		field.setPrefWidth(250);
+		
 		field.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String oldValue, String newValue) {
@@ -67,28 +74,39 @@ public class TiPropertyView {
 
 			@Override
 			public void handle(KeyEvent event) {
-				TiProperty prop = TiPropertyView.this.prop;
-				
 				if(prop.getPropertyType() == TiProperty.PROPERTY_TYPE_NORMAL) {
 					if(event.getCode() == KeyCode.UP) {
-						try {
-							int newVal = Integer.parseInt(prop.getValue())+1;
-							prop.setValue(String.valueOf(newVal));
-							field.setText(prop.getValue());								
-						} catch(NumberFormatException e) {
-//							System.out.println("Can't use arrows on non-numeric fields");
-						}
+						this.incrOrDecr(true);
 					} else if(event.getCode() == KeyCode.DOWN) {
-						try {
-							int newVal = Integer.parseInt(prop.getValue())-1;
-							prop.setValue(String.valueOf(newVal));
-							field.setText(prop.getValue());							
-						} catch(NumberFormatException e) {
-//							System.out.println("Can't use arrows on non-numeric fields");
-						} 
+						this.incrOrDecr(false);
+					}
+				}
+			}
+			
+			public void incrOrDecr(boolean incr) {
+				TiPropertyView that = TiPropertyView.this;
+				TiProperty prop = TiPropertyView.this.prop;
+				
+				try {
+					Matcher match = that.ints.matcher(prop.getValue());
+					match.find();
+					
+					if(match.group().length() > 0) {
+						int newDigit = Integer.parseInt(match.group());
+						if(incr) {
+							newDigit += 1; 
+						} else {
+							newDigit -= 1;
+						}
+						String newValue = prop.getValue().replace(match.group(), String.valueOf(newDigit));
+						prop.setValue(newValue);
+						field.setText(prop.getValue());									
 					}
 					
-					
+				} catch(NumberFormatException e) {
+//					System.out.println("Can't use arrows on non-numeric fields");
+				} catch(IllegalStateException e) {
+//					System.out.println("Can't use arrows on non-numeric fields");
 					
 				}
 			}
