@@ -72,6 +72,9 @@ public class TiProperty extends AbstractModel implements IObserver {
 	}
 
 	public String getValue() {
+		if(this.getPropertyType() == TiProperty.PROPERTY_TYPE_OBJECT) {
+			return this.getSubPropertiesAsJSON().toString();
+		}
 		return value;
 	}
 
@@ -151,11 +154,7 @@ public class TiProperty extends AbstractModel implements IObserver {
 		try {
 			if(this.getPropertyType() == TiProperty.PROPERTY_TYPE_OBJECT) {
 				//if type object, then add the sub properties.
-				JSONObject subProps = new JSONObject();
-				for(int i = 0; i < this.getObjectValues().size(); i++) {
-					TiProperty prop = this.getObjectValues().get(i);
-					subProps.put(prop.getKey(), prop.getValue());
-				}
+				JSONObject subProps = this.getSubPropertiesAsJSON();
 				json.put(this.getKey(), subProps);
 			} else {
 				json.put(this.getKey(), this.getValue());
@@ -165,6 +164,22 @@ public class TiProperty extends AbstractModel implements IObserver {
 		}
 		return json;
 	}
+	
+	private JSONObject getSubPropertiesAsJSON() {
+		JSONObject subProps = new JSONObject();
+		for(int i = 0; i < this.getObjectValues().size(); i++) {
+			TiProperty prop = this.getObjectValues().get(i);
+			try {
+				subProps.put(prop.getKey(), prop.getValue());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return subProps;
+	}
+	
 
 	@Override
 	public void update(int ns, String message) {

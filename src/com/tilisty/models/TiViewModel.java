@@ -121,6 +121,19 @@ public class TiViewModel extends AbstractModel implements IObserver {
 		
 		this.change(ns, json.toString());
 	}
+	
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+		try {
+			for(int i = 0; i < this.properties.size(); i++) {
+				TiProperty prop = this.properties.get(i);
+				json.put(prop.getKey(), prop.getValue());
+			}
+		} catch(JSONException e) {
+			
+		}
+		return json;
+	}
 
 	public String getId() {
 		return id;

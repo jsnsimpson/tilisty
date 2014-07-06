@@ -61,6 +61,7 @@ public class TilistyView extends Application implements IObserver {
 		
 		this.setStage(stage);
 		Scene scene = new Scene(mainArea, APP_WIDTH, APP_HEIGHT);
+		scene.getStylesheets().add("com/tilisty/views/css/app.css");
 		stage.setTitle("Tilisty");
 
 		this.viewList = new TilistyTreeView();
