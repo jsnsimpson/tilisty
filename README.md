@@ -8,10 +8,10 @@ TItanium LIve STYle - A new tool to enable you to edit your titanium view proper
 The idea came following frustrations of the styling development cycle -> compile -> launch simulator -> looks wrong - > tweak the properties a bit -> compile -> launch -> still looks wrong -> repeat. This tool enables you to compile your app once and get the properties correct from one compilation. Very much like live styling in firebug or chrome dev tools etc.
 
 Usage Instructions:  
-- Pull this repository.
+- Pull this repository or download the raw tilisty.jar file in the 'dist' folder [here](https://github.com/jsnsimpson/tilisty/raw/master/dist/tilisty.jar)
 - Drop js/Tilisty.js in to your titanium application and implement code as in the examples below.
 - On Mac you can launch the java Application with the Jar Launcher app
-- running ```java -jar tilisty.jar``` from command line
+- running ```java -jar tilisty.jar``` (from the dist folder if you have this repository checked out) from command line
 - Ensure you have java version 1.7 (VM 7.0+) installed, type ```java -version``` in terminal
 - You can download the latest JDK (v 7+) from here: [Java SE 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
