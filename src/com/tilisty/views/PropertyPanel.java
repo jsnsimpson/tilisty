@@ -52,7 +52,7 @@ public class PropertyPanel extends GridPane {
 		jsonView.setEditable(false);
 		jsonView.setPrefHeight(TilistyView.APP_HEIGHT);
 		jsonView.setPrefWidth(TilistyView.APP_WIDTH);	
-		jsonView.applyCss();
+		//jsonView.applyCss();
 		//set the default title for all properties panels.
 		Text scenetitle = new Text("PROPERTIES");
 		scenetitle.setFont(Font.font("Arial", FontWeight.NORMAL, 20));
