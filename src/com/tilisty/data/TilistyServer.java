@@ -24,14 +24,13 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
  */
 public class TilistyServer extends Thread implements Runnable {
 
-
-	private IoAcceptor acceptor;
-	private TilistyServerHandler tilistyHandler;
-
-	public TilistyServer(TilistyServerHandler handler) 
-	{
-		this.tilistyHandler = handler;
-	}
+    private IoAcceptor acceptor;
+    private TilistyServerHandler tilistyHandler;
+	
+    public TilistyServer(TilistyServerHandler handler) 
+    {
+        this.tilistyHandler = handler;
+    }
 	
     public void run() 
     {
